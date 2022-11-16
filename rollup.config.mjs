@@ -1,7 +1,7 @@
 import babel from "@rollup/plugin-babel";
 
 export default {
-  input: "./src/index.js",
+  input: "./src/index.tsx",
   output: [
     {
       file: "./dist/esm/index.js",
@@ -18,14 +18,9 @@ export default {
   plugins: [
     babel({
       presets: [
-        [
-          "@babel/preset-env",
-          {
-            targets: ">= 0.25%, not dead, ie >= 10",
-            useBuiltIns: "usage",
-            corejs: 3,
-          },
-        ],
+        "@babel/preset-env",
+        ["@babel/preset-react", { runtime: "automatic" }],
+        ,
       ],
     }),
   ],
