@@ -1,0 +1,15 @@
+{
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@rollup/plugin-babel": "^6.0.2",
+    "rollup": "^3.3.0",
+    "rollup-plugin-babel": "^4.4.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -cw"
+  }
+}
