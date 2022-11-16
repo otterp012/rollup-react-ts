@@ -1,4 +1,9 @@
 import babel from "@rollup/plugin-babel";
+import resolve from "@rollup/plugin-node-resolve";
+import commonJs from "@rollup/plugin-commonjs";
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
+
+const extensions = ["js", "jsx", "ts", ".tsx"];
 
 export default {
   input: "./src/index.tsx",
@@ -14,14 +19,27 @@ export default {
       sourcemap: true,
     },
   ],
-
+  watch: {
+    exclude: "node_modules/**",
+    include: "./src/*",
+  },
   plugins: [
+    peerDepsExternal(),
+    commonJs(),
+    resolve({
+      extensions,
+    }),
     babel({
       presets: [
-        "@babel/preset-env",
+        "@babel/env",
         ["@babel/preset-react", { runtime: "automatic" }],
-        ,
+        "@babel/preset-typescript",
       ],
+      plugins: ["@babel/plugin-transform-runtime"],
+      babelHelpers: "runtime",
+      exclude: ["node_modules/**", "dist"],
+      extensions,
     }),
   ],
+  // output.preserveModules: true,
 };
